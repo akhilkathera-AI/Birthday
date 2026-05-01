@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy 50th Birthday Sree! 🏏</title>
+    <meta property="og:title" content="🎂 Happy 50th Birthday Sree! 🏏">
+    <meta property="og:description" content="You're invited to celebrate Sree's Golden 50th Birthday! 🎉🥳">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{min-height:100vh;overflow-x:hidden;font-family:'Poppins',sans-serif;background:#0a0a2e;color:#fff}
+
+        /* BG */
+        .bg-layer{position:fixed;inset:0;z-index:0}
+        .bg-layer::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;filter:brightness(.25) saturate(1.3)}
+        .bg-layer::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,46,.7) 0%,rgba(10,10,46,.4) 40%,rgba(10,10,46,.85) 100%)}
+
+        canvas{position:fixed;inset:0;z-index:1;pointer-events:none}
+        .particles,.sparkles,.floating-bats{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+
+        .particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;opacity:0}
+        @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+        .sparkle{position:absolute;width:4px;height:4px;background:#ffd700;border-radius:50%;animation:twinkle 2s ease-in-out infinite}
+        @keyframes twinkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
+
+        .bat-icon{position:absolute;font-size:2rem;opacity:.15;animation:drift 15s linear infinite}
+        @keyframes drift{0%{transform:translateY(110vh) rotate(0deg);opacity:0}10%{opacity:.15}90%{opacity:.15}100%{transform:translateY(-10vh) rotate(360deg);opacity:0}}
+
+        /* CONTENT */
+        .content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem 4rem;text-align:center}
+
+        /* INTRO */
+        .intro-overlay{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1a0a3e,#0a0a2e);cursor:pointer;transition:opacity .8s,visibility .8s}
+        .intro-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+        .intro-overlay .gift-icon{font-size:6rem;animation:pulse 1.5s ease-in-out infinite}
+        .intro-overlay p{font-size:1.3rem;margin-top:1.5rem;color:#f0c040;animation:fadeInUp 1s ease .5s both}
+        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+        /* PHOTO */
+        .photo-section{margin-top:1.5rem;animation:zoomReveal 1.2s cubic-bezier(.34,1.56,.64,1) .3s both}
+        .photo-frame{position:relative;width:180px;height:180px;border-radius:50%;padding:5px;background:linear-gradient(135deg,#ffd700,#ff8800,#ffd700,#fff5cc);animation:rotateGlow 4s linear infinite;box-shadow:0 0 40px rgba(255,215,0,.5),0 0 80px rgba(255,215,0,.2)}
+        .photo-frame img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #0a0a2e}
+        .photo-crown{position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:2.5rem;animation:bounce 2s ease-in-out infinite}
+        @keyframes rotateGlow{0%{box-shadow:0 0 40px rgba(255,215,0,.5),0 0 80px rgba(255,215,0,.2)}50%{box-shadow:0 0 60px rgba(255,136,0,.6),0 0 100px rgba(255,215,0,.3)}100%{box-shadow:0 0 40px rgba(255,215,0,.5),0 0 80px rgba(255,215,0,.2)}}
+        @keyframes zoomReveal{from{transform:scale(0) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+        @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+
+        /* AGE */
+        .age-badge{margin:.8rem 0 .3rem;animation:dropIn .8s cubic-bezier(.34,1.56,.64,1) .6s both}
+        .age-number{font-family:'Playfair Display',serif;font-size:7rem;font-weight:900;background:linear-gradient(135deg,#ffd700,#ffaa00,#ffd700,#fff5cc,#ffd700);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s ease-in-out infinite;line-height:1;filter:drop-shadow(0 4px 30px rgba(255,215,0,.5))}
+        .age-label{font-size:1.1rem;letter-spacing:.5em;text-transform:uppercase;color:#ffd700;margin-top:-.3rem}
+        @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        @keyframes dropIn{from{transform:translateY(-80px) scale(.5);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+
+        .happy-birthday{font-family:'Great Vibes',cursive;font-size:3.8rem;color:#fff;text-shadow:0 0 30px rgba(255,215,0,.6),0 0 60px rgba(255,215,0,.3);animation:fadeInUp 1s ease 1s both}
+        .name{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;letter-spacing:.08em;background:linear-gradient(90deg,#fff,#ffd700,#fff);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeInUp 1s ease 1.3s both,shimmer 4s linear infinite;filter:drop-shadow(0 2px 20px rgba(255,215,0,.4))}
+        .tagline{margin-top:1.2rem;font-size:1.1rem;color:#ccc;max-width:500px;line-height:1.7;animation:fadeInUp 1s ease 1.6s both}
+        .divider{width:120px;height:3px;background:linear-gradient(90deg,transparent,#ffd700,transparent);margin:1.2rem auto;animation:fadeInUp 1s ease 1.8s both}
+        .quote{font-style:italic;color:#f0c040;font-size:1.05rem;max-width:450px;animation:fadeInUp 1s ease 2s both;margin-bottom:1.5rem}
+
+        @keyframes fadeInUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+        /* ═══ CAKE CUTTING SCENE ═══ */
+        .cake-scene{position:relative;width:280px;height:260px;margin:1rem auto;animation:fadeInUp 1s ease 2.2s both}
+        .cake-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:200px}
+        .cake-tier{border-radius:12px;margin:0 auto}
+        .tier-bottom{width:200px;height:60px;background:linear-gradient(180deg,#e8a0c0,#d4789a);border-radius:12px 12px 4px 4px;position:relative}
+        .tier-middle{width:155px;height:50px;background:linear-gradient(180deg,#f0c080,#e0a060);border-radius:10px 10px 4px 4px;margin:-2px auto 0}
+        .tier-top{width:110px;height:42px;background:linear-gradient(180deg,#a0d8f0,#70b8d8);border-radius:10px 10px 4px 4px;margin:-2px auto 0}
+        .cake-tier::after{content:'';position:absolute;bottom:0;left:0;right:0;height:12px;background:rgba(255,255,255,.25);border-radius:0 0 4px 4px}
+        .tier-bottom::after,.tier-middle::after,.tier-top::after{content:'';position:absolute;bottom:0;left:0;right:0;height:10px;background:rgba(255,255,255,.2);border-radius:0 0 4px 4px}
+
+        /* Candles */
+        .candles{position:absolute;top:-45px;left:50%;transform:translateX(-50%);display:flex;gap:14px}
+        .candle{width:6px;height:30px;background:linear-gradient(180deg,#fff,#ffd700);border-radius:3px 3px 0 0;position:relative}
+        .flame{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:10px;height:16px;background:radial-gradient(ellipse,#fff 0%,#ffd700 40%,#ff6600 70%,transparent 100%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:flicker .15s ease-in-out infinite alternate}
+        .flame-glow{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:24px;height:24px;background:radial-gradient(circle,rgba(255,200,0,.4),transparent);border-radius:50%;animation:flicker .2s ease-in-out infinite alternate}
+        @keyframes flicker{0%{transform:translateX(-50%) scale(1) rotate(-2deg)}100%{transform:translateX(-50%) scale(1.1) rotate(2deg)}}
+
+        /* Knife */
+        .knife{position:absolute;right:-40px;top:30px;transform:rotate(-45deg);animation:cuttingMotion 3s ease-in-out 3.5s infinite;transform-origin:bottom center;opacity:0;animation-fill-mode:forwards}
+        .knife-blade{width:8px;height:70px;background:linear-gradient(90deg,#ccc,#fff,#ccc);border-radius:2px 2px 1px 1px}
+        .knife-handle{width:14px;height:28px;background:linear-gradient(90deg,#8B4513,#A0522D,#8B4513);border-radius:3px;margin:-2px auto 0}
+        @keyframes cuttingMotion{0%{transform:rotate(-45deg) translateY(-20px);opacity:0}10%{opacity:1}30%{transform:rotate(-10deg) translateY(20px);opacity:1}50%{transform:rotate(-10deg) translateY(30px);opacity:1}70%{transform:rotate(-45deg) translateY(-20px);opacity:1}100%{transform:rotate(-45deg) translateY(-20px);opacity:1}}
+
+        /* Cake sparkles */
+        .cake-sparkle{position:absolute;font-size:.8rem;animation:cakeSparkle 2s ease-in-out infinite}
+        @keyframes cakeSparkle{0%,100%{opacity:0;transform:scale(0) translateY(0)}50%{opacity:1;transform:scale(1) translateY(-15px)}}
+
+        .cake-label{text-align:center;margin-top:.5rem;font-size:.95rem;color:#ffd700;font-weight:600;letter-spacing:.05em}
+
+        /* ═══ BEER CHEERS SCENE ═══ */
+        .beer-scene{position:relative;width:260px;height:200px;margin:1.5rem auto;animation:fadeInUp 1s ease 2.5s both}
+        .beer-mug{position:absolute;bottom:0}
+        .beer-left{left:30px;animation:cheersLeft 2.5s ease-in-out 4s infinite}
+        .beer-right{right:30px;animation:cheersRight 2.5s ease-in-out 4s infinite}
+
+        .mug-body{width:60px;height:90px;background:linear-gradient(180deg,#ffd700 0%,#ffaa00 60%,#cc8800 100%);border-radius:6px 6px 10px 10px;position:relative;overflow:hidden;border:3px solid rgba(255,255,255,.3)}
+        .mug-handle{position:absolute;right:-18px;top:15px;width:20px;height:45px;border:4px solid rgba(255,255,255,.3);border-left:none;border-radius:0 12px 12px 0}
+        .beer-foam{position:absolute;top:-12px;left:-3px;right:-3px;height:22px;background:radial-gradient(ellipse,#fff 0%,#f5f0e0 100%);border-radius:50% 50% 4px 4px;overflow:hidden}
+        .foam-bubble{position:absolute;background:rgba(255,255,255,.6);border-radius:50%}
+        .beer-bubbles{position:absolute;width:100%;height:100%;top:0;left:0}
+        .beer-bubble{position:absolute;background:rgba(255,255,255,.3);border-radius:50%;animation:riseBubble 2s ease-in infinite}
+        @keyframes riseBubble{0%{transform:translateY(0);opacity:.5}100%{transform:translateY(-70px);opacity:0}}
+
+        /* Splash */
+        .splash{position:absolute;top:10px;left:50%;transform:translateX(-50%);opacity:0;animation:splashAnim 2.5s ease-in-out 4s infinite}
+        .splash-drop{position:absolute;width:6px;height:6px;background:#ffd700;border-radius:50%}
+
+        @keyframes cheersLeft{0%,100%{transform:rotate(0deg) translateX(0)}30%{transform:rotate(15deg) translateX(20px)}50%{transform:rotate(15deg) translateX(20px)}70%{transform:rotate(0deg) translateX(0)}}
+        @keyframes cheersRight{0%,100%{transform:rotate(0deg) translateX(0)}30%{transform:rotate(-15deg) translateX(-20px)}50%{transform:rotate(-15deg) translateX(-20px)}70%{transform:rotate(0deg) translateX(0)}}
+        @keyframes splashAnim{0%,25%{opacity:0}35%{opacity:1}50%{opacity:1}65%{opacity:0}100%{opacity:0}}
+
+        .beer-label{text-align:center;margin-top:.3rem;font-size:.95rem;color:#ffd700;font-weight:600}
+
+        /* WISH BTN */
+        .wish-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.5rem;border:2px solid #ffd700;border-radius:50px;background:transparent;color:#ffd700;font-size:1.1rem;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;transition:all .3s;animation:fadeInUp 1s ease 2.8s both;text-decoration:none;margin-top:1rem}
+        .wish-btn:hover{background:#ffd700;color:#0a0a2e;box-shadow:0 0 30px rgba(255,215,0,.5);transform:scale(1.05)}
+
+        .music-toggle{position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;width:50px;height:50px;border-radius:50%;border:2px solid #ffd700;background:rgba(10,10,46,.8);color:#ffd700;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;animation:fadeInUp 1s ease 3s both}
+        .music-toggle:hover{background:#ffd700;color:#0a0a2e}
+
+        /* Responsive */
+        @media(max-width:600px){
+            .age-number{font-size:5rem}
+            .happy-birthday{font-size:2.5rem}
+            .name{font-size:2rem}
+            .tagline,.quote{font-size:.95rem}
+            .intro-overlay .gift-icon{font-size:4rem}
+            .photo-frame{width:140px;height:140px}
+            .cake-scene{width:220px;height:220px;transform:scale(.85)}
+            .beer-scene{transform:scale(.85)}
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-overlay" id="intro">
+        <div class="gift-icon">🎁</div>
+        <p>Tap to unwrap the surprise!</p>
+    </div>
+    <div class="bg-layer"></div>
+    <canvas id="fireworks"></canvas>
+    <canvas id="confetti"></canvas>
+    <div class="particles" id="particles"></div>
+    <div class="sparkles" id="sparkles"></div>
+    <div class="floating-bats" id="floatingBats"></div>
+
+    <div class="content">
+        <!-- Sree's Photo -->
+        <div class="photo-section">
+            <div class="photo-frame">
+                <div class="photo-crown">👑</div>
+                <img src="sree.jpg.JPG" alt="Sree">
+            </div>
+        </div>
+
+        <div class="age-badge">
+            <div class="age-number">50</div>
+            <div class="age-label">Golden Jubilee</div>
+        </div>
+
+        <h1 class="happy-birthday">Happy Birthday</h1>
+        <h2 class="name">SREE</h2>
+
+        <p class="tagline">
+            🏏 Half a century scored in style! 🏏<br>
+            Here's to the greatest innings of your life — the next 50!
+        </p>
+        <div class="divider"></div>
+        <p class="quote">"Like a champion batsman, you've played every ball life bowled at you with grace, power, and elegance."</p>
+
+        <!-- CAKE CUTTING -->
+        <div class="cake-scene">
+            <div class="cake-base">
+                <div class="tier-top cake-tier">
+                    <div class="candles">
+                        <div class="candle"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle"><div class="flame"></div><div class="flame-glow"></div></div>
+                        <div class="candle"><div class="flame"></div><div class="flame-glow"></div></div>
+                    </div>
+                </div>
+                <div class="tier-middle cake-tier"></div>
+                <div class="tier-bottom cake-tier"></div>
+                <div class="knife">
+                    <div class="knife-blade"></div>
+                    <div class="knife-handle"></div>
+                </div>
+            </div>
+            <div class="cake-sparkle" style="top:20px;left:30px;animation-delay:0s">✨</div>
+            <div class="cake-sparkle" style="top:10px;right:40px;animation-delay:.7s">✨</div>
+            <div class="cake-sparkle" style="top:50px;left:15px;animation-delay:1.4s">🎂</div>
+            <div class="cake-sparkle" style="top:40px;right:20px;animation-delay:2s">✨</div>
+            <p class="cake-label">🎂 Time to cut the cake! 🔪</p>
+        </div>
+
+        <!-- BEER CHEERS -->
+        <div class="beer-scene">
+            <div class="beer-mug beer-left">
+                <div class="mug-body">
+                    <div class="beer-foam">
+                        <div class="foam-bubble" style="width:8px;height:8px;top:4px;left:5px"></div>
+                        <div class="foam-bubble" style="width:6px;height:6px;top:2px;left:20px"></div>
+                        <div class="foam-bubble" style="width:10px;height:8px;top:5px;right:8px"></div>
+                    </div>
+                    <div class="beer-bubbles">
+                        <div class="beer-bubble" style="width:4px;height:4px;bottom:10px;left:15px;animation-delay:0s"></div>
+                        <div class="beer-bubble" style="width:3px;height:3px;bottom:5px;left:30px;animation-delay:.5s"></div>
+                        <div class="beer-bubble" style="width:5px;height:5px;bottom:15px;left:40px;animation-delay:1s"></div>
+                    </div>
+                    <div class="mug-handle"></div>
+                </div>
+            </div>
+            <div class="splash">
+                <div class="splash-drop" style="top:0;left:-15px"></div>
+                <div class="splash-drop" style="top:-10px;left:0"></div>
+                <div class="splash-drop" style="top:0;left:15px"></div>
+                <div class="splash-drop" style="top:-5px;left:-8px"></div>
+                <div class="splash-drop" style="top:-8px;left:8px"></div>
+            </div>
+            <div class="beer-mug beer-right">
+                <div class="mug-body">
+                    <div class="beer-foam">
+                        <div class="foam-bubble" style="width:8px;height:8px;top:4px;left:5px"></div>
+                        <div class="foam-bubble" style="width:6px;height:6px;top:2px;left:20px"></div>
+                        <div class="foam-bubble" style="width:10px;height:8px;top:5px;right:8px"></div>
+                    </div>
+                    <div class="beer-bubbles">
+                        <div class="beer-bubble" style="width:4px;height:4px;bottom:10px;left:15px;animation-delay:.3s"></div>
+                        <div class="beer-bubble" style="width:3px;height:3px;bottom:5px;left:30px;animation-delay:.8s"></div>
+                        <div class="beer-bubble" style="width:5px;height:5px;bottom:15px;left:40px;animation-delay:1.3s"></div>
+                    </div>
+                    <div class="mug-handle"></div>
+                </div>
+            </div>
+            <p class="beer-label">🍻 Cheers to 50 golden years! 🍻</p>
+        </div>
+
+        <a class="wish-btn" href="https://wa.me/?text=Happy%2050th%20Birthday%20Sree!%20🎂🏏%20Wishing%20you%20a%20golden%20innings%20ahead!%20🎉" target="_blank" rel="noopener">
+            🎉 Send Wishes on WhatsApp
+        </a>
+    </div>
+
+    <button class="music-toggle" id="musicBtn" title="Toggle Music" aria-label="Toggle birthday music">🔇</button>
+    <script>
+
+        // ─── Audio ───
+        let audioCtx, isPlaying = false;
+        function createBirthdayTune() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const notes = [
+                [262,.3],[262,.3],[294,.6],[262,.6],[349,.6],[330,1],
+                [262,.3],[262,.3],[294,.6],[262,.6],[392,.6],[349,1],
+                [262,.3],[262,.3],[523,.6],[440,.6],[349,.6],[330,.6],[294,1],
+                [466,.3],[466,.3],[440,.6],[349,.6],[392,.6],[349,1]
+            ];
+            let t = audioCtx.currentTime + .1;
+            notes.forEach(([f, d]) => {
+                const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+                o.type = 'sine'; o.frequency.value = f;
+                g.gain.setValueAtTime(.15, t);
+                g.gain.exponentialRampToValueAtTime(.001, t + d - .05);
+                o.connect(g); g.connect(audioCtx.destination);
+                o.start(t); o.stop(t + d); t += d;
+            });
+            isPlaying = true;
+            document.getElementById('musicBtn').textContent = '🔊';
+            setTimeout(() => { isPlaying = false; document.getElementById('musicBtn').textContent = '🔇'; }, t * 1000);
+        }
+        document.getElementById('musicBtn').addEventListener('click', () => { if (!isPlaying) createBirthdayTune(); });
+
+        // ─── Intro ───
+        document.getElementById('intro').addEventListener('click', () => {
+            document.getElementById('intro').classList.add('hidden');
+            createBirthdayTune();
+            launchFireworks();
+            burstConfetti();
+        });
+
+        // ─── Fireworks ───
+        const fwC = document.getElementById('fireworks'), fwX = fwC.getContext('2d');
+        let fwP = [];
+        function rFW() { fwC.width = innerWidth; fwC.height = innerHeight; } rFW();
+        addEventListener('resize', rFW);
+
+        class FW {
+            constructor(x, y, c) {
+                this.x = x; this.y = y;
+                const a = Math.random() * Math.PI * 2, s = Math.random() * 5 + 2;
+                this.vx = Math.cos(a) * s; this.vy = Math.sin(a) * s;
+                this.alpha = 1; this.color = c;
+                this.r = Math.random() * 2.5 + 1; this.decay = Math.random() * .015 + .01;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.vy += .04; this.alpha -= this.decay; }
+            draw(ctx) { ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); ctx.restore(); }
+        }
+
+        function launchFireworks() {
+            const cols = ['#ffd700','#ff4444','#44ff44','#4488ff','#ff44ff','#ff8800','#fff'];
+            let n = 0;
+            const iv = setInterval(() => {
+                const x = Math.random() * fwC.width * .6 + fwC.width * .2;
+                const y = Math.random() * fwC.height * .4 + fwC.height * .1;
+                const c = cols[~~(Math.random() * cols.length)];
+                for (let i = 0; i < 80; i++) fwP.push(new FW(x, y, c));
+                if (++n > 15) clearInterval(iv);
+            }, 400);
+        }
+        (function aFW() { fwX.clearRect(0, 0, fwC.width, fwC.height); fwP = fwP.filter(p => p.alpha > 0); fwP.forEach(p => { p.update(); p.draw(fwX); }); requestAnimationFrame(aFW); })();
+
+        // ─── Confetti ───
+        const cfC = document.getElementById('confetti'), cfX = cfC.getContext('2d');
+        let cfP = [];
+        function rCF() { cfC.width = innerWidth; cfC.height = innerHeight; } rCF();
+        addEventListener('resize', rCF);
+
+        class CF {
+            constructor() {
+                this.x = Math.random() * cfC.width; this.y = -20;
+                this.w = Math.random() * 10 + 5; this.h = Math.random() * 6 + 3;
+                this.color = ['#ffd700','#ff4444','#44ff44','#4488ff','#ff44ff','#ff8800'][~~(Math.random() * 6)];
+                this.vy = Math.random() * 3 + 2; this.vx = Math.random() * 2 - 1;
+                this.angle = Math.random() * 360; this.spin = Math.random() * 10 - 5;
+            }
+            update() { this.y += this.vy; this.x += this.vx; this.angle += this.spin; }
+            draw(ctx) { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle * Math.PI / 180); ctx.fillStyle = this.color; ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h); ctx.restore(); }
+        }
+        function burstConfetti() { let n = 0; const iv = setInterval(() => { for (let i = 0; i < 8; i++) cfP.push(new CF()); if (++n > 60) clearInterval(iv); }, 100); }
+        (function aCF() { cfX.clearRect(0, 0, cfC.width, cfC.height); cfP = cfP.filter(c => c.y < cfC.height + 20); cfP.forEach(c => { c.update(); c.draw(cfX); }); requestAnimationFrame(aCF); })();
+
+        // ─── Particles ───
+        (function() {
+            const c = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div'); p.classList.add('particle');
+                const s = Math.random() * 6 + 2;
+                p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;background:${Math.random()>.5?'#ffd700':'#ff8800'};animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*10}s`;
+                c.appendChild(p);
+            }
+        })();
+
+        // ─── Sparkles ───
+        (function() {
+            const c = document.getElementById('sparkles');
+            for (let i = 0; i < 25; i++) {
+                const s = document.createElement('div'); s.classList.add('sparkle');
+                s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${Math.random()*2+1.5}s`;
+                c.appendChild(s);
+            }
+        })();
+
+        // ─── Floating icons ───
+        (function() {
+            const c = document.getElementById('floatingBats');
+            const icons = ['🏏','🏆','⭐','🎂','🥇','🍺','🎉'];
+            for (let i = 0; i < 14; i++) {
+                const b = document.createElement('div'); b.classList.add('bat-icon');
+                b.textContent = icons[~~(Math.random() * icons.length)];
+                b.style.cssText = `left:${Math.random()*100}%;font-size:${Math.random()*1.5+1.2}rem;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*15}s`;
+                c.appendChild(b);
+            }
+        })();
+    </script>
+</body>
+</html>
